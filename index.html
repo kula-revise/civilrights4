@@ -32,8 +32,8 @@
     --a1: #B4622D;   --a1-rgb: 180,98,45;
     --a2: #1F6B58;   --a2-rgb: 31,107,88;
     --serif: Georgia, 'Times New Roman', serif;
-    --sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    --mono: ui-monospace, 'Cascadia Code', Consolas, 'Courier New', monospace;
+    --sans:  system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --mono:  var(--sans);
 
     /* ---- DERIVED TOKENS. A skin should not need to touch these. ----
        They exist because the engine used to hardcode fourteen literal
@@ -168,9 +168,9 @@
   --a1: #2B3034;  --a1-rgb: 43,48,52;
   --a2: #B23F60;  --a2-rgb: 178,63,96;
   /* type: a grotesque carries the history, a serif is kept for documents only */
-  --sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --serif: Georgia, 'Times New Roman', serif;
-  --mono: ui-monospace, 'Cascadia Code', Consolas, 'Courier New', monospace;
+  --sans:  'Archivo', 'Inter', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --serif: 'Source Serif 4', 'Charter', Georgia, serif;
+  --mono:  'IBM Plex Mono', ui-monospace, Consolas, monospace;
 }
 
 /* Ground: a faint horizontal lane rule. Angola rules vertically, so this reads
@@ -582,32 +582,6 @@ body.alt .figure img { filter: brightness(0.9) contrast(1.02); }
   .srcpeek .peek-body { padding: 0 0.85rem 0.85rem; font-size: 0.94rem; line-height: 1.62; border-top: 1px solid var(--rule); margin: 0 0.85rem; padding-left: 0; padding-right: 0; }
   .srcpeek .peek-body p { margin: 0.7rem 0 0; }
 
-  /* v2.1 multi-source reopen. Tabs plus a swipeable track, so every source in
-     the file is reachable from any question. Absent on a single-source lesson,
-     which renders exactly as it did before. */
-  .srcpeek.multi .peek-body { padding-bottom: 0.5rem; }
-  .peek-tabs { display: flex; gap: 0.4rem; overflow-x: auto; padding: 0.7rem 0 0.6rem;
-    -webkit-overflow-scrolling: touch; scrollbar-width: none; }
-  .peek-tabs::-webkit-scrollbar { display: none; }
-  .peek-tab { flex: 0 0 auto; min-height: 40px; padding: 0.45rem 0.85rem;
-    font-family: var(--sans); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em;
-    text-transform: uppercase; cursor: pointer;
-    background: transparent; color: var(--muted);
-    border: 1px solid var(--rule); border-radius: 0; }
-  .peek-tab.on { background: var(--a1); color: var(--on-a1); border-color: var(--a1); }
-  .peek-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch; scrollbar-width: none; gap: 0; }
-  .peek-track::-webkit-scrollbar { display: none; }
-  .peek-slide { flex: 0 0 100%; scroll-snap-align: start; padding-right: 0.1rem; }
-  .peek-slide .peek-attr { font-family: var(--sans); font-size: 0.66rem; font-weight: 700;
-    line-height: 1.45; color: var(--muted); padding-bottom: 0.5rem; margin-bottom: 0.6rem;
-    border-bottom: 1px solid var(--rule); }
-  .peek-slide p { margin: 0.7rem 0 0; }
-  .srcpeek.multi::after { content: "Swipe, or tap a source above."; display: block;
-    font-family: var(--sans); font-size: 0.66rem; letter-spacing: 0.06em; color: var(--muted);
-    padding: 0.55rem 0 0.2rem; }
-  .srcpeek.multi:not([open])::after { display: none; }
-
   .marks { font-family: var(--mono, var(--sans)); font-size: 0.68rem; letter-spacing: 0.1em;
     text-transform: uppercase; color: var(--a1); font-weight: 700; margin-left: 0.7rem; }
   .q-meta { margin-bottom: 0.9rem; }
@@ -711,9 +685,9 @@ const RESULTS = {
   "done": {
     "label": "Lesson complete",
     "title": "Birmingham, Washington, Selma",
-    "text": "Tap Done to continue to Lesson 5, Putting It Together."
+    "text": "Tap Done to continue to Lesson 5, where you put it all together."
   },
-  "footer": "Next: Lesson 5, where you put the whole unit into one exam-shaped run.",
+  "footer": "Next: Lesson 5, an exam-standard question marked the way the exam is marked.",
   "bands": {
     "excellent": "You can show two sources supporting each other. Go on to Lesson 5.",
     "strong": "Solid. Run the recap cards once more, then go on to Lesson 5.",
@@ -1256,78 +1230,24 @@ function renderStat(item){
 
 // Reopen strip: shown on a question that follows a source, so the learner
 // never has to tap Back to reread the extract.
-//
-// v2.1. Was: the strip offered LAST_SOURCE only. That is correct for a lesson
-// built on one source and wrong for a capstone, where the paragraph question
-// asks for all of them and a learner on the closing screens could reach only
-// the most recent. Now every source seen so far in the file is reachable: a row
-// of tabs, and a swipeable track underneath. One source renders exactly as
-// before, so nothing in the existing corpus changes.
 function sourcePeek(item){
   if(item.noSource) return "";
-  if(item.sourceRef && item.sourceRef.body){
-    return peekShell([item.sourceRef]);
-  }
-  const seen = SOURCES_SEEN.filter(s => s && s.body);
-  if(!seen.length) return "";
-  return peekShell(seen);
-}
-
-function peekShell(list){
-  const many = list.length > 1;
-  const cue = many
-    ? `Tap to read the ${list.length} sources again`
-    : `Tap to read ${esc(list[0].label)} again`;
-  const who = many
-    ? list.map(s=>esc(s.label)).join(" &middot; ")
-    : esc(stripTags(list[0].attr)).slice(0,90);
-  const tabs = many
-    ? `<div class="peek-tabs" role="tablist">${list.map((s,i)=>
-        `<button class="peek-tab${i===list.length-1?" on":""}" data-peek="${i}" role="tab">${esc(s.label)}</button>`).join("")}</div>`
-    : "";
-  const track = `<div class="peek-track" data-peek-track>${list.map(s=>
-      `<div class="peek-slide"><div class="peek-attr">${s.attr}</div>${s.body}</div>`).join("")}</div>`;
-  return `<details class="srcpeek${many?" multi":""}"><summary>
+  const s = item.sourceRef || LAST_SOURCE;
+  if(!s || !s.body) return "";
+  return `<details class="srcpeek"><summary>
       <svg class="chev" width="11" height="13" viewBox="0 0 11 13" fill="none" aria-hidden="true"><path d="M2 1.5 L8.5 6.5 L2 11.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <span class="peek-cue">${cue}<span class="peek-who">${who}</span></span>
-    </summary><div class="peek-body">${tabs}${track}</div></details>`;
-}
-
-// Tabs scroll the track; swiping the track updates the tabs. Both work alone,
-// so a learner who never notices the tabs can still swipe, and the other way round.
-function bindPeek(){
-  stage.querySelectorAll(".srcpeek.multi").forEach(d=>{
-    const track = d.querySelector("[data-peek-track]");
-    const tabs  = Array.from(d.querySelectorAll(".peek-tab"));
-    if(!track || !tabs.length) return;
-    const go = i => track.scrollTo({ left: i * track.clientWidth, behavior: "smooth" });
-    tabs.forEach(t => t.addEventListener("click", () => go(parseInt(t.dataset.peek,10))));
-    let tick = null;
-    track.addEventListener("scroll", () => {
-      clearTimeout(tick);
-      tick = setTimeout(() => {
-        const i = Math.round(track.scrollLeft / Math.max(1, track.clientWidth));
-        tabs.forEach((t,n) => t.classList.toggle("on", n === i));
-      }, 60);
-    });
-    // open on the source the learner saw last, which is the one they were reading
-    d.addEventListener("toggle", () => {
-      if(d.open) requestAnimationFrame(() => { track.scrollLeft = (tabs.length-1) * track.clientWidth; });
-    });
-  });
+      <span class="peek-cue">Tap to read ${esc(s.label)} again<span class="peek-who">${esc(stripTags(s.attr)).slice(0,90)}</span></span>
+    </summary><div class="peek-body">${s.body}</div></details>`;
 }
 function stripTags(h){ return String(h||"").replace(/<[^>]+>/g,""); }
 
 // ============ SOURCE ============
-// Every source rendered so far, in order, so any later question can reopen all
-// of them. LAST_SOURCE is kept as the final entry for anything still reading it.
-let SOURCES_SEEN = [];
+// The most recent source rendered, so any later question can reopen it in place.
 let LAST_SOURCE = null;
 
 function renderSource(item){
   const s=item.source;
   LAST_SOURCE = { label: item.sourceLabel || item.tag || "the source", attr: s.attr, body: s.body };
-  if(!SOURCES_SEEN.some(x => x.label === LAST_SOURCE.label)) SOURCES_SEEN.push(LAST_SOURCE);
   stage.innerHTML = `
     <div class="card">
       ${item.tag?`<div class="stage-tag">${esc(item.tag)}</div>`:""}
@@ -1561,7 +1481,6 @@ function syncNavCarousel(){
 }
 
 function bindToggles(){
-  bindPeek();
   stage.querySelectorAll("[data-toggle]").forEach(b=>b.addEventListener("click",()=>{
     b.nextElementSibling.classList.toggle("open");
   }));
@@ -1616,7 +1535,7 @@ function showResults(){
     const back=document.createElement("div");
     back.className="pop-back";
     const D = RESULTS.done||{};
-    back.innerHTML=`<div class="pop"><div class="pop-label">${esc(D.label||"Lesson complete")}</div>${D.title?`<h3 style="margin:.4rem 0 .2rem;font-size:1.05rem;">${esc(D.title)}</h3>`:""}<div class="pop-text">${esc(D.text||"Tap Done to continue to the next lesson.")}</div><button class="pop-btn" id="fin-ok">Done</button></div>`;
+    back.innerHTML=`<div class="pop"><div class="pop-label">${esc(D.label||"Lesson complete")}</div>${D.title?`<h3 style="margin:.4rem 0 .2rem;font-size:1.05rem;">${esc(D.title)}</h3>`:""}<div class="pop-text">${esc(D.text||"Tap Done to continue.")}</div><button class="pop-btn" id="fin-ok">Got it</button></div>`;
     document.body.appendChild(back);
     document.getElementById("fin-ok").addEventListener("click",()=>back.remove());
   });
