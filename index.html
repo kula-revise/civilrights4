@@ -933,47 +933,47 @@ const RESULTS = {
 const FLOW = [
   {
     "type": "story",
-    "marker": "Two messages",
-    "markerLabel": "Somewhere you know &middot; a week apart",
+    "marker": "She used their own newspapers",
+    "markerLabel": "Memphis &middot; 1892",
     "lines": [
       {
-        "mark": "Monday",
-        "text": "A friend tells you the club meeting was moved and nobody told her."
+        "text": "A journalist sets out to record how often black Americans are being lynched, and why."
       },
       {
-        "mark": "Next Monday",
-        "text": "Somebody else tells you the same thing happened to him."
+        "text": "She could have collected accounts from the families, and those would have been called one-sided."
       },
       {
-        "mark": "That evening",
-        "text": "You work out that the two of them have never met."
+        "text": "Instead she builds the record out of white southern newspapers, which printed the killings as news."
       },
       {
-        "text": "**Neither of them could have got it from the other.**"
+        "text": "Her case is made from the reporting of the people carrying it out."
       },
       {
-        "text": "You already weigh two accounts that match. Now do it with two documents written two years apart."
+        "text": "**They had no reason to help her.**"
+      },
+      {
+        "text": "That is why the record held. In this lesson you will read two speeches, two years apart, by men with different reasons for speaking."
       }
     ]
   },
   {
     "type": "question",
     "kind": "instinct",
-    "q": "Why does the second account change how you read the first?",
+    "q": "Why was that the stronger way to build the record?",
     "options": [
-      "Because two people are harder to ignore than one person alone",
-      "Because neither could have copied the other, so it happened twice",
-      "Because the second one gave you far more detail than the first",
-      "Because you trusted the second person more than the first one"
+      "Because newspaper reports are always more accurate than family accounts",
+      "Because the papers were describing it while defending the people doing it",
+      "Because she had no other sources available to her at that time",
+      "Because a printed page counts for more than something somebody says"
     ],
     "correct": 1,
-    "explanation": "There is no score here. What matters is that the two accounts are independent. Neither could have picked it up from the other, so agreement between them is evidence rather than an echo. You are about to test two presidential speeches against each other on exactly that basis.",
+    "explanation": "There is no score on this one. Family accounts were not less true. They were easier to dismiss. The papers were hostile to her and printed the killings anyway, so the two sides agree while wanting opposite things. That is what makes agreement worth something. In the exam a supports question wants the point two sources share, said once, with both of them named.",
     "noSource": true
   },
   {
     "type": "content",
     "tag": "The turn",
-    "html": "<h2>The word for what you just did</h2><p>You did not believe the second account because it was better told. You believed both because they matched and could not have been copied.</p><p>That is <strong>corroboration</strong>: one source supporting another.</p><p>Paper 1 asks it directly. <em>Explain how the evidence in Source A supports the information in Source B.</em> The marks come from naming what each source says and then showing where they meet, so a good answer quotes both.</p>",
+    "html": "<h2>The word for what you just did</h2><p>You did not believe the record because it was well told. You believed it because it was built from people who wanted it not to be true.</p><p>That is <strong>corroboration</strong>: one source supporting another.</p><p>Paper 1 asks it directly. <em>Explain how the evidence in Source A supports the information in Source B.</em> The marks come from naming what each source says and then showing where they meet, so a good answer quotes both.</p>",
     "remember": "A supports answer needs both sources in it. Describe only one and you have written half an answer.",
     "terms": [
       {
@@ -989,7 +989,7 @@ const FLOW = [
   {
     "type": "content",
     "tag": "The evidence",
-    "html": "<h2>Birmingham, spring 1963</h2><p>Birmingham was the most rigidly segregated big city in America, and the movement chose it for that reason. The campaign filled the jails, boycotted the shops, and marched every day.</p><p>Bull Connor, the Commissioner of Public Safety you met in Lesson 3, answered with police dogs and high-pressure fire hoses, and he did it in front of the cameras. In May the city's children marched and were arrested in their hundreds.</p><p>The pictures ran worldwide. Within weeks a President who had moved slowly for two years went on television and asked for a law.</p>",
+    "html": "<h2>Birmingham, spring 1963</h2><p>Birmingham was the most rigidly segregated big city in America, and the movement chose it for that reason. The campaign filled the jails, boycotted the shops, and marched every day.</p><p>Bull Connor was the Commissioner of Public Safety you met in Lesson 3. He answered with police dogs and high-pressure fire hoses. He did it in front of the cameras. In May the city's children marched and were arrested in their hundreds.</p><p>The pictures ran worldwide. Within weeks a President who had moved slowly for two years went on television and asked for a law.</p>",
     "remember": "Birmingham was chosen because the reaction would be worst there. That is a tactic, not an accident, and it is examinable.",
     "terms": [
       {
@@ -1082,7 +1082,7 @@ const FLOW = [
   {
     "type": "stat",
     "tag": "Why voting was the next fight",
-    "heading": "What a law on paper had still not reached",
+    "heading": "What the new law had still not reached",
     "lead": "<p>Segregation was unlawful. Registering to vote was another matter.</p>",
     "stats": [
       {
@@ -1130,7 +1130,7 @@ const FLOW = [
       4,
       5
     ],
-    "explanation": "Birmingham in the spring, Kennedy in June, the march in August, the Act the following July. Then Selma in March 1965 and Johnson's speech eight days later. The pair most people reverse is Selma and the speech. Put the speech first and you make the law look like a plan rather than a response. That misses the causation this whole topic turns on.",
+    "explanation": "Birmingham in the spring, Kennedy in June, the march in August, the Act the following July. Then Selma in March 1965 and Johnson's speech eight days later. The pair most people reverse is Selma and the speech. Put the speech first and you make the law look like a plan rather than a response. That misses the cause and effect this whole topic depends on.",
     "noSource": true
   },
   {
@@ -1822,7 +1822,7 @@ function showResults(){
   });
   /* The button at the end of the lesson is the thing that continues. It does
      not point at a control somewhere else on the page. */
-  document.getElementById("finish-btn").addEventListener("click",()=>{ KulaLMS.advance(); });
+  document.getElementById("finish-btn").onclick = ()=>{ KulaLMS.advance(); };
   KulaLMS.completed();
 }
 
@@ -1874,6 +1874,7 @@ renderCover();
     ic.innerHTML = offering==="light" ? SUN : MOON;
     b.setAttribute("aria-pressed", showing==="dark" ? "true" : "false");
     b.setAttribute("aria-label", "Switch to " + offering + " mode");
+    b.setAttribute("title", offering==="light" ? "Light mode" : "Dark mode");
   }
   b.addEventListener("click",function(){
     var flipped=document.body.classList.toggle(CLS);
