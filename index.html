@@ -553,6 +553,8 @@ body.dark .figure img { filter: brightness(0.9) contrast(1.02); }
   .toggle-btn { font-family: var(--sans); background: transparent; border: none; color: var(--a1); cursor: pointer; font-size: 0.88rem; font-weight: 600; text-decoration: underline; padding: 0.7rem 0 0; }
   .toggle-body { display: none; margin-top: 0.7rem; padding-top: 0.7rem; border-top: 1px dashed var(--hair-strong); font-size: 0.94rem; color: var(--muted); line-height: 1.66; }
   .toggle-body.open { display: block; }
+  .toggle-body p { font-size: inherit; line-height: inherit; color: inherit; margin: 0 0 0.75rem; }
+  .toggle-body p:last-child { margin-bottom: 0; }
 
   /* Questions */
   .q-text { font-size: 1.16rem; line-height: 1.5; font-weight: 600; margin-bottom: 1.2rem; }
@@ -967,7 +969,7 @@ const FLOW = [
       "Because a printed page counts for more than something somebody says"
     ],
     "correct": 1,
-    "explanation": "There is no score on this one. Family accounts were not less true. They were easier to dismiss. The papers were hostile to her and printed the killings anyway, so the two sides agree while wanting opposite things. That is what makes agreement worth something. In the exam a supports question wants the point two sources share, said once, with both of them named.",
+    "explanation": "Family accounts were not less true. They were easier to dismiss. The papers were hostile to her and printed the killings anyway. The two sides agree while wanting opposite things. Two enemies agreeing counts for more than two allies agreeing, and you can use that. In the exam a supports question wants the point two sources share. Name both sources, say the point once, and the marks are yours.",
     "noSource": true
   },
   {
@@ -1009,7 +1011,7 @@ const FLOW = [
     "source": {
       "attr": "Source A: from the remarks of President John F Kennedy on nationwide radio and television, 11 June 1963. Public Papers of the Presidents of the United States: John F Kennedy, 1963, Item 237. A United States government work.",
       "body": "<p>This Nation was founded by men of many nations and backgrounds. It was founded on the principle that all men are created equal, and that the rights of every man are diminished [reduced] when the rights of one man are threatened.</p><p>It ought to be possible for American consumers of any colour to receive equal service in places of public facilities such as hotels and restaurants and theatres and retail stores without being forced to resort to demonstrations in the street, and it ought to be possible for American citizens of any colour to register and vote in free elections without interference or fear of reprisal [retaliation] &hellip;</p><p>The heart of the question is whether all Americans are to be afforded [granted] equal rights and equal opportunities &hellip; If an American, because his skin is dark, cannot eat lunch in a restaurant open to the public &hellip; then who among us would be content to have the colour of his skin changed and stand in his place?</p><p>I am, therefore, asking the Congress to enact [pass] legislation giving all Americans the right to be served in facilities which are open to the public: hotels, restaurants, theatres, retail stores and similar establishments &hellip;</p>",
-      "toggle": "Two things are doing quiet work here. Without being forced to resort to demonstrations in the street is Kennedy describing the sit-ins and the marches, and it tells you what pushed him: he is offering a law as the alternative to more protest. And stand in his place is the oldest argument in politics, asking a listener to swap positions with someone else. Notice who he is speaking to. Almost every phrase is addressed to white Americans, not to the people being refused service.",
+      "toggle": "<p>Kennedy is asking Congress for a civil rights law, and he builds up to it in four moves. He starts from the founding principle that all men are created equal. He adds that threatening one man's rights reduces everybody's. He then names what he wants: equal service in hotels, restaurants, theatres and shops. He also wants the right to register and vote without fear. He asks white listeners to imagine having dark skin and being refused lunch in a public restaurant. Then he asks Congress to pass the law.</p><p>Now the wording. \"Without being forced to resort to demonstrations in the street\" is Kennedy describing the sit-ins and the marches. It tells you what pushed him. He is offering a law as the alternative to more protest. \"Stand in his place\" is the oldest argument in politics, asking a listener to swap positions with somebody else.</p><p>Notice who he is speaking to. Almost every phrase is addressed to white Americans rather than to the people being refused service.</p>",
       "toggleLabel": "What does this actually mean?"
     },
     "terms": [
@@ -1035,7 +1037,7 @@ const FLOW = [
       "Order every state to remove its remaining segregation signs at once"
     ],
     "correct": 0,
-    "explanation": "Source A gives it to you almost word for word, so this is a mark you should always take. Option {opt1} is the one that catches people, because troops had gone to Alabama that same day. Sending troops enforces a ruling that already exists. Passing a law creates a new one. Confuse the two and you are answering from what you knew instead of from the source.",
+    "explanation": "Source A gives it to you almost word for word, so this is a mark you should always take. Option {opt1} is the one to watch, because troops had gone to Alabama that same day. Sending troops enforces a ruling that already exists. Passing a law creates a new one. Confuse the two and you answer from what you knew instead of from the source, which earns nothing.",
     "marks": "(1 x 2)  2 marks"
   },
   {
@@ -1049,7 +1051,7 @@ const FLOW = [
       "That street demonstrations were about to be made illegal by Congress"
     ],
     "correct": 0,
-    "explanation": "He is naming the protests as the reason a law is now needed. That is an admission, not a complaint. Option {opt1} is the tempting misreading, because the sentence does sound faintly disapproving. Read it that way and you lose the causation the question is testing. The question asks what the protest produced, and it produced the bill.",
+    "explanation": "He is naming the protests as the reason a law is now needed. That is an admission rather than a complaint. Option {opt1} is the tempting misreading, because the sentence does sound faintly disapproving. Read it that way and you lose the causation the question is testing. The question asks what the protest produced, and it produced the bill. Miss that and a marker cannot give you the marks.",
     "marks": "(1 x 2)  2 marks"
   },
   {
@@ -1130,7 +1132,7 @@ const FLOW = [
       4,
       5
     ],
-    "explanation": "Birmingham in the spring, Kennedy in June, the march in August, the Act the following July. Then Selma in March 1965 and Johnson's speech eight days later. The pair most people reverse is Selma and the speech. Put the speech first and you make the law look like a plan rather than a response. That misses the cause and effect this whole topic depends on.",
+    "explanation": "The order runs Birmingham in the spring, Kennedy in June, the march in August, the Act the following July. Then Selma in March 1965 and Johnson's speech eight days later. Selma and the speech are the easy pair to reverse. Put the speech first and you make the law look like a plan rather than a response. That misses the cause and effect this topic depends on, and the marks with it.",
     "noSource": true
   },
   {
@@ -1140,7 +1142,7 @@ const FLOW = [
     "source": {
       "attr": "Source B: from the Special Message to the Congress, 'The American Promise', delivered by President Lyndon B Johnson on 15 March 1965. Public Papers of the Presidents of the United States: Lyndon B Johnson, 1965. A United States government work.",
       "body": "<p>At times history and fate meet at a single time in a single place to shape a turning point in man's unending search for freedom. So it was at Lexington and Concord. So it was a century ago at Appomattox. So it was last week in Selma, Alabama. There, long-suffering men and women peacefully protested the denial of their rights as Americans. Many were brutally assaulted [attacked]. One good man, a man of God, was killed &hellip;</p><p>Our fathers believed that if this noble view of the rights of man was to flourish, it must be rooted in democracy. The most basic right of all was the right to choose your own leaders &hellip; Many of the issues of civil rights are very complex and most difficult. But about this there can and should be no argument. Every American citizen must have an equal right to vote.</p><p>Yet the harsh fact is that in many places in this country men and women are kept from voting simply because they are Negroes. Every device of which human ingenuity is capable has been used to deny this right &hellip;</p><p>Wednesday I will send to Congress a law designed to eliminate illegal barriers to the right to vote.</p>",
-      "toggle": "Three references need unpacking. Lexington and Concord are where the American War of Independence began, and Appomattox is where the Civil War ended, so Johnson is placing Selma alongside the two moments Americans treat as the founding and the saving of the country. Negroes was the standard respectful term in official American usage in 1965 and is not acceptable today, and the source is kept as written. Every device of which human ingenuity is capable means the poll taxes and literacy tests you met in Lesson 1, and he is saying they were designed rather than accidental.",
+      "toggle": "<p>Johnson is announcing a voting rights law, and he makes three moves before he gets to it. He places Selma alongside two moments Americans already revere. Peaceful protesters there were beaten, and one man was killed. He then argues that the right to choose your own leaders is the most basic right of all. It is the one part of civil rights he says is not complicated. Finally he says plainly that people are kept from voting because they are black. He ends by promising Congress a bill that Wednesday.</p><p>Now the wording. \"Lexington and Concord\" is where the American War of Independence began, and \"Appomattox\" is where the Civil War ended. Placing Selma beside them puts it with the founding and the saving of the country. \"Negroes\" was the standard respectful term in official American usage in 1965. It is not acceptable today, and the source is kept as written. \"Every device of which human ingenuity is capable\" means the poll taxes and literacy tests you met in Lesson 1.</p><p>One thing to notice. He says those devices were designed rather than accidental, which is a stronger claim than it looks. It makes the states responsible on purpose.</p>",
       "toggleLabel": "What does this actually mean?"
     },
     "terms": [
@@ -1176,7 +1178,7 @@ const FLOW = [
       "2": 1,
       "3": 1
     },
-    "explanation": "Johnson's two sentences about voting are printed in front of you. The registration figure and the bridge are both true, and you met them on the cards above. That is what makes them feel as though they belong here too. Source B says Selma without naming the bridge or giving a number. Quote what the source did not say and your evidence is not evidence.",
+    "explanation": "Johnson's two sentences about voting are printed in front of you. The registration figure and the bridge are both true, and you met them on the cards above. Being true is what makes them feel as though they belong here too. Source B says Selma without naming the bridge or giving a number. Quote what the source did not say and a marker cannot give you the mark.",
     "marks": "2 marks"
   },
   {
@@ -1190,7 +1192,7 @@ const FLOW = [
       "To argue that the marchers had broken the law in the way rebels do"
     ],
     "correct": 0,
-    "explanation": "Those two places are where America believes it was founded, and where it was saved. Put Selma beside them and you are telling Congress that the marchers acted as Americans, not against America. Option {opt3} turns that completely round. It tempts you because both earlier events involved fighting. Miss what the comparison is for and you will describe the reference instead of explaining it.",
+    "explanation": "Those two places are where America believes it was founded, and where it was saved. Put Selma beside them and you are telling Congress that the marchers acted as Americans, not against America. Option {opt3} turns that completely round, and it tempts you because both earlier events involved fighting. Miss what the comparison is for and you describe the reference instead of explaining it. A marker reads that as description.",
     "marks": "(1 x 2)  2 marks"
   },
   {
@@ -1204,7 +1206,7 @@ const FLOW = [
       "Both were delivered on live television to the whole of the American public"
     ],
     "correct": 0,
-    "explanation": "A supports answer needs the point of agreement and evidence from each source. Kennedy asks for a law on service and Johnson for a law on voting. Each of them speaks days after a beating that was filmed. Option {opt1} is true and useless to you, because sharing an author is not sharing evidence. Name what both sources say and you have the whole comparison.",
+    "explanation": "A supports answer needs the point of agreement and evidence from each source. Kennedy asks for a law on service and Johnson for a law on voting. Each of them speaks days after a beating that was filmed. Option {opt1} is true and useless to you, because sharing an author is not sharing evidence. Name what both sources say and a marker can give you both marks.",
     "marks": "(2 x 2)  4 marks"
   },
   {
@@ -1218,7 +1220,7 @@ const FLOW = [
       "Very useful, because both were written after the events they describe"
     ],
     "correct": 0,
-    "explanation": "Take a position and name the job each source can do. They are excellent evidence of a promise, and of the reason it was made. They tell you nothing about whether a shop in Alabama served anyone the following week. Option {opt2} rejects a whole class of source rather than judging this one, which is refusing the question.",
+    "explanation": "Take a position and name the job each source can do. They are excellent evidence of a promise, and of the reason it was made. They tell you nothing about whether a shop in Alabama served anyone the following week. Option {opt2} rejects a whole class of source rather than judging this one. That refuses the question, and a marker cannot give you the marks.",
     "marks": "(2 x 2)  4 marks"
   },
   {
