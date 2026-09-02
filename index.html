@@ -345,13 +345,13 @@ body.dark .option-btn, body.dark .opt-btn { border-color: rgba(234,240,249,0.20)
    Left alone they produce pale text on pale grounds. */
 
 body.dark .option-btn.correct {
-  background: rgba(255,77,109,0.18) !important;
-  border-color: #FF4D6D !important;
+  background: rgba(74,222,128,0.34);
+  border-color: #4ADE80;
   color: var(--ink) !important;
 }
 body.dark .option-btn.wrong {
-  background: rgba(88,182,255,0.16) !important;
-  border-color: #58B6FF !important;
+  background: rgba(255,107,107,0.36);
+  border-color: #FF8787;
   color: var(--ink) !important;
 }
 body.dark .option-btn.correct .opt-text,
@@ -386,13 +386,13 @@ body.dark .quiz-foot a, body.dark .quiz-foot { color: var(--clay) !important; }
 body.dark .option { background: var(--cut) !important; border-color: rgba(234,240,249,0.18) !important; color: var(--ink) !important; }
 body.dark .option.selected { background: rgba(88,182,255,0.14) !important; border-color: #58B6FF !important; }
 body.dark .option.correct {
-  background: rgba(255,77,109,0.18) !important;
-  border-color: #FF4D6D !important;
+  background: rgba(74,222,128,0.34);
+  border-color: #4ADE80;
   color: var(--ink) !important;
 }
 body.dark .option.wrong {
-  background: rgba(88,182,255,0.16) !important;
-  border-color: #58B6FF !important;
+  background: rgba(255,107,107,0.36);
+  border-color: #FF8787;
   color: var(--ink) !important;
 }
 body.dark .option.correct .opt-text,
@@ -563,8 +563,8 @@ body.dark .figure img { filter: brightness(0.9) contrast(1.02); }
   .option:hover:not(:disabled) { background: var(--cut); border-color: var(--a1); }
   .option:disabled { cursor: default; }
   .option.selected { background: var(--cut); border-color: var(--a1); border-width: 2px; padding: 0.94rem 0.99rem; }
-  .option.correct { background: var(--ok-bg); border-color: var(--a2); border-width: 2px; padding: 0.94rem 0.99rem; }
-  .option.wrong { background: var(--no-bg); border-color: var(--clay); border-width: 2px; padding: 0.94rem 0.99rem; }
+  .option.correct { background: rgba(34,197,94,0.30); border-color: #15803D; border-width: 2px; padding: 0.94rem 0.99rem; }
+  .option.wrong { background: rgba(239,68,68,0.28); border-color: #DC2626; border-width: 2px; padding: 0.94rem 0.99rem; }
   /* The dimmed state fell below readable contrast at 360px. One rule per mode,
      and nothing later in the file competes with it. */
   .option.dimmed, .option-btn.dimmed { opacity: 0.82; }
@@ -683,7 +683,7 @@ body.dark { --ok: #93D98A; --ok-rgb: 147,217,138; --on-ok: #080C16; }
 
 .option.correct, .option-btn.correct,
 body.dark .option.correct, body.dark .option-btn.correct {
-  background: var(--ok) !important;
+  background: rgba(74,222,128,0.34);
   border: 2px solid var(--ok) !important;
   box-shadow: 5px 5px 0 rgba(var(--ok-rgb),0.30) !important;
   color: var(--on-ok) !important;
@@ -699,7 +699,7 @@ body.dark .option.correct .opt-mark, body.dark .option-btn.correct .opt-mark {
 .option.correct .opt-letter, .option-btn.correct .opt-letter { opacity: 0.85; }
 
 .option.wrong, .option-btn.wrong {
-  background: var(--no-bg) !important;
+  background: rgba(239,68,68,0.28);
   border: 2px solid var(--a2) !important;
   box-shadow: none !important;
 }
@@ -867,6 +867,35 @@ body.dark .inter-item.ok span, body.dark .inter-item.ok .rank { color: var(--on-
   .btn-primary:disabled { opacity: 0.34; cursor: not-allowed; }
 
 
+
+/* The answer fills carry the meaning, so the words on top of them have to stay
+   legible on both fills in both modes. Before this, correct-option text kept a
+   near-white colour that sat on a light green fill at 1.22 to 1. The hue lives
+   in the fill and the border; the text is plain ink. */
+.option.correct .opt-text,
+.option-btn.correct .opt-text,
+.option.correct .opt-letter,
+.option-btn.correct .opt-letter,
+.option.correct .opt-mark,
+.option-btn.correct .opt-mark,
+.option.wrong .opt-text,
+.option-btn.wrong .opt-text,
+.option.wrong .opt-letter,
+.option-btn.wrong .opt-letter,
+.option.wrong .opt-mark,
+.option-btn.wrong .opt-mark { color: #101418 !important; opacity: 1 !important; }
+body.dark .option.correct .opt-text,
+body.dark .option-btn.correct .opt-text,
+body.dark .option.correct .opt-letter,
+body.dark .option-btn.correct .opt-letter,
+body.dark .option.correct .opt-mark,
+body.dark .option-btn.correct .opt-mark,
+body.dark .option.wrong .opt-text,
+body.dark .option-btn.wrong .opt-text,
+body.dark .option.wrong .opt-letter,
+body.dark .option-btn.wrong .opt-letter,
+body.dark .option.wrong .opt-mark,
+body.dark .option-btn.wrong .opt-mark { color: #F2F5F8 !important; opacity: 1 !important; }
 </style>
 </head>
 <body class="dark">
@@ -1221,6 +1250,20 @@ const FLOW = [
     ],
     "correct": 0,
     "explanation": "Take a position and name the job each source can do. They are excellent evidence of a promise, and of the reason it was made. They tell you nothing about whether a shop in Alabama served anyone the following week. Option {opt2} rejects a whole class of source rather than judging this one. That refuses the question, and a marker cannot give you the marks.",
+    "marks": "(2 x 2)  4 marks"
+  },
+  {
+    "type": "question",
+    "level": "Evaluate",
+    "q": "How reliable is Source A as evidence of why Kennedy acted on civil rights in 1963?",
+    "options": [
+      "Limited, because he is explaining himself to the voters he needs",
+      "Reliable, because a president has no reason to hide his real motives",
+      "Not reliable, because the speech was written by his advisers first",
+      "Reliable, because it was broadcast live and could not be edited later"
+    ],
+    "correct": 0,
+    "explanation": "Take a position, then say what makes you take it. Kennedy is on national radio and television, and he is building a case for a bill he wants passed. The reasons he gives are the reasons that help him, which is not the same as the reasons that moved him. Option {opt3} sounds like a strength and is not one, because a live broadcast is still a prepared argument. Option {opt1} assumes a politician explaining himself is the same as a politician confessing. Name the bias, which here is a president arguing for his own bill. Say who the source was made for and a marker can give you the marks.",
     "marks": "(2 x 2)  4 marks"
   },
   {
